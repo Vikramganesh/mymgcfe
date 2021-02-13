@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { BaseUrl } from '../../../env/env';
 @Injectable({
   providedIn: 'root'
 })
 export class SupervisorService {
   isPrinting = false;
+  url = BaseUrl;
+  Url = this.url + '/supervisor';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -19,11 +22,11 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/saddemployee', data, options);
+    return this.http.post(this.Url + '/saddemployee', data, options);
   }
 
   GetEmployeeDetails(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/getsuperemployeedata/${id}`);
+    return this.http.get(this.Url + `/getsuperemployeedata/${id}`);
   }
 
   EditEmployee(data): Observable<any> {
@@ -33,7 +36,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/seditemployee', data, options);
+    return this.http.post(this.Url + '/seditemployee', data, options);
   }
 
   AddVendor(data): Observable<any> {
@@ -43,12 +46,12 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/addvendor', data, options);
+    return this.http.post(this.Url + '/addvendor', data, options);
 
   }
 
   AllVendors(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/allcommvendors/${id}`);
+    return this.http.get(this.Url + `/allcommvendors/${id}`);
   }
 
   EditVendor(data): Observable<any> {
@@ -58,19 +61,19 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/editvendor', data, options);
+    return this.http.post(this.Url + '/editvendor', data, options);
 
   }
   AllComplaints(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/scomplaintsbyid/${id}`);
+    return this.http.get(this.Url + `/scomplaintsbyid/${id}`);
   }
 
   getAllEmployees(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/getsuperemployeedata/${id}`);
+    return this.http.get(this.Url + `/getsuperemployeedata/${id}`);
   }
 
   getTasklist(): Observable<any> {
-    return this.http.get('http://localhost:5000/tasklist');
+    return this.http.get(this.Url + '/tasklist');
   }
   AddDailyTask(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -79,16 +82,16 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/addtaskdaily', data, options);
+    return this.http.post(this.Url + '/addtaskdaily', data, options);
 
   }
 
   getAllUnits(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/sallunitsbyid/${id}`);
+    return this.http.get(this.Url + `/sallunitsbyid/${id}`);
   }
 
   getcommunityType(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/communitytypebyid/${id}`);
+    return this.http.get(this.Url + `/communitytypebyid/${id}`);
   }
 
   RegComplaints(data): Observable<any> {
@@ -98,7 +101,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/addcomplaints', data, options);
+    return this.http.post(this.Url + '/addcomplaints', data, options);
 
   }
 
@@ -109,14 +112,14 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/supdatecomplaint', data, options);
+    return this.http.post(this.Url + '/supdatecomplaint', data, options);
 
   }
   History(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/history/${id}`);
+    return this.http.get(this.Url + `/history/${id}`);
   }
   getCommData(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/getcomdata/${id}`);
+    return this.http.get(this.Url + `/getcomdata/${id}`);
   }
   attendence_in(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -125,7 +128,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/attendence', data, options);
+    return this.http.post(this.Url + '/attendence', data, options);
 
   }
   attendence_out(data): Observable<any> {
@@ -135,22 +138,32 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/attendenceupdate', data, options);
+    return this.http.post(this.Url + '/attendenceupdate', data, options);
 
   }
   getemployees(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/getsuperemployeedata/${id}`);
+    return this.http.get(this.Url + `/getsuperemployeedata/${id}`);
+  }
+  employeesalarycal(data): Observable<any> {
+    const httpheaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('**Accept**', 'application/json');
+    const options = {
+      headers: httpheaders
+    };
+    return this.http.post(this.Url + '/superemployeesalarycal', data, options);
+    
   }
   todayEmps(id, date): Observable<any> {
-    return this.http.get(`http://localhost:5000/gettodayemps/${id}/${date}`);
+    return this.http.get(this.Url + `/gettodayemps/${id}/${date}`);
 
   }
   CommType(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/communitytypebyid/${id}`);
+    return this.http.get(this.Url + `/communitytypebyid/${id}`);
 
   }
   getBlocks(id): Observable<any> {
-    return this.http.get(`http://localhost:5000/blocksdata/${id}`);
+    return this.http.get(this.Url + `/blocksdata/${id}`);
   }
   AddMaintenancee(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -159,7 +172,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/commmaintenance', data, options);
+    return this.http.post(this.Url + '/commmaintenance', data, options);
 
 
   }
@@ -170,7 +183,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/addotherdues', data, options);
+    return this.http.post(this.Url + '/addotherdues', data, options);
 
   }
 
@@ -181,11 +194,11 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/paymentmaintenance', data, options);
+    return this.http.post(this.Url + '/paymentmaintenance', data, options);
   }
 
   PaymentMode(): Observable<any> {
-    return this.http.get('http://localhost:5000/paymentmode');
+    return this.http.get(this.Url + '/paymentmode');
   }
   pay_status(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -194,7 +207,7 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/payment', data, options);
+    return this.http.post(this.Url + '/payment', data, options);
 
   }
   recipt(data): Observable<any> {
@@ -204,7 +217,37 @@ export class SupervisorService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/recipt', data, options);
+    return this.http.post(this.Url + '/recipt', data, options);
+
+  }
+  Boardmemberssearch(data): Observable<any> {
+    const httpheaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('**Accept**', 'application/json');
+    const options = {
+      headers: httpheaders
+    };
+    return this.http.post(this.Url + '/boardmemberssearch', data, options);
+
+  }
+  emp_salary(data): Observable<any> {
+    const httpheaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('**Accept**', 'application/json');
+    const options = {
+      headers: httpheaders
+    };
+    return this.http.post(this.Url + '/emp_salary', data, options);
+
+  }
+  vendor_payment(data): Observable<any> {
+    const httpheaders = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('**Accept**', 'application/json');
+    const options = {
+      headers: httpheaders
+    };
+    return this.http.post(this.Url + '/ven_payment', data, options);
 
   }
 

@@ -58,7 +58,7 @@ export class OwnertenantsComponent implements OnInit {
     this.TenantReg.get('ownerid').setValue(this.a[0].owner_id);
     console.log(this.TenantReg.value);
     this.service.owneraddTenant(this.TenantReg.value).subscribe(
-      res => this.toastr.error('Tenant Registration Success...', 'SUSSESS'),
+      res => this.toastr.success('Tenant Registration Success...', 'SUSSESS'),
       err => {
         if (err.error.text === 'tenant-exist') {
           this.toastr.error('Tenant already Exist', 'ERROR');
@@ -102,6 +102,9 @@ export class OwnertenantsComponent implements OnInit {
       err => this.toastr.error('Error at tenant update', 'ERROR')
     );
     this.EditTenant.reset();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
   get eform() {
     return this.EditTenant.controls;

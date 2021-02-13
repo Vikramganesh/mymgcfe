@@ -31,7 +31,7 @@ export class SupervpaymentsComponent implements OnInit {
   constructor(private fb: FormBuilder, private service: SupervisorService, private toastr: ToastrService, private router: Router) {
     this.Maintenance = this.fb.group({
       communityid: new FormControl(this.communityid),
-      startdate: new FormControl(),
+      date: new FormControl(),
       block_id: new FormControl()
     });
 
@@ -54,10 +54,11 @@ export class SupervpaymentsComponent implements OnInit {
 
   }
 
-  makePayment(id, amount) {
+  makePayment(id, amount, maintanance_month) {
     console.log(id, amount);
     this.paymentmode.get('invid').setValue(id);
     this.paymentmode.get('total_amt').setValue(amount);
+    this.paymentmode.get('maintenance_month').setValue(maintanance_month);
 
   }
   sendPayment() {

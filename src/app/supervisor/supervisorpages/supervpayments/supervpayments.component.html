@@ -45,7 +45,7 @@
               </div>
             </div>
         </div>
-        <button type="submit"  class="btn btn-primary"  [disabled]='!Maintenance.valid'>Get Payments</button>
+        <button type="submit" id="btn" class="btn btn-primary"  [disabled]='!Maintenance.valid'>Get Payments</button>
       </form>
       </div>
   </div>
@@ -73,7 +73,7 @@
               <td>{{m.otherdues}}</td>
               <td>{{m.total}}</td>
               <td>
-                <button class="btn btn-primary" (click)="makePayment(m.invoice_id,m.total)" data-toggle="modal"  data-target="#makepayment">Pay</button>
+                <button class="btn btn-primary" (click)="makePayment(m.invoice_id,m.total,m.maintanance_month)" data-toggle="modal"  data-target="#makepayment">Pay</button>
               </td>
           </tr>
            </tbody>
@@ -94,6 +94,7 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="paymentmode" (ngSubmit)="sendPayment()">
+          <input type="hidden" class="form-control" formControlName="maintanance_month">
           <div class="form-group">
             <label for="name">Total Amount</label>
             <input type="text" class="form-control" formControlName="total_amt">

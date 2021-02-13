@@ -22,6 +22,20 @@ export class AdminapprovalsComponent implements OnInit {
       community: new FormControl('', Validators.required),
       status: new FormControl('pending', Validators.required)
     });
+    setTimeout(() => {
+      this.dataTable = $(this.table.nativeElement);
+      this.dataTable.dataTable({
+         columnDefs: [
+          {
+              targets: 0,
+              checkboxes: {
+                selectRow: true
+             }
+          }
+       ],
+        lengthMenu: [[5, 10, 15], [5, 10, 15]],
+        pageLength: 1});
+    }, 3000);
   }
   get form() {
     return this.searchReg.controls;
@@ -53,25 +67,12 @@ export class AdminapprovalsComponent implements OnInit {
     );
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+
+    }, 2000);
   }
 
   ngOnInit(): void {
     this.getcommunitydata();
-    setTimeout(() => {
-      this.dataTable = $(this.table.nativeElement);
-      this.dataTable.dataTable({
-         columnDefs: [
-          {
-              targets: 0,
-              checkboxes: {
-                selectRow: true
-             }
-          }
-       ],
-        lengthMenu: [[5, 10, 15], [5, 10, 15]],
-        pageLength: 1});
-    }, 3000);
   }
 
 }

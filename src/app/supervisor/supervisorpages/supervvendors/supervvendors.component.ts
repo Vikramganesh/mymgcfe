@@ -56,7 +56,7 @@ export class SupervvendorsComponent implements OnInit {
     this.VendorReg.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   Data(id, name, phone, email, address) {
@@ -76,7 +76,7 @@ export class SupervvendorsComponent implements OnInit {
     this.VendorEdit.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   ngOnInit(): void {

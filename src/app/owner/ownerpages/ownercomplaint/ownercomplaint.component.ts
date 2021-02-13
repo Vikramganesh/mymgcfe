@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import { OwnerserviceService } from '../ownerservice.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-ownercomplaint',
   templateUrl: './ownercomplaint.component.html',
@@ -20,6 +20,7 @@ export class OwnercomplaintComponent implements OnInit {
   ComplaintReg: FormGroup;
   EditOwnerComplaint: FormGroup;
   allcomplaints;
+  mySubscription: any;
 
   constructor(private fb: FormBuilder, private service: OwnerserviceService,  private toastr: ToastrService, private router: Router) {
     this.ComplaintReg = this.fb.group({
@@ -30,6 +31,39 @@ export class OwnercomplaintComponent implements OnInit {
       description: new FormControl('', [Validators.required]),
       comments: new FormControl('', [Validators.required]),
       urgent: new FormControl()
+  });
+  // tslint:disable-next-line:align
+  this.EditOwnerComplaint = this.fb.group({
+    etid: new FormControl(),
+    ecomplaint: new FormControl(),
+    edescription: new FormControl(),
+    ecomments: new FormControl()
+  });
+  // tslint:disable-next-line:align
+  setTimeout(() => {
+    this.dataTable = $(this.table.nativeElement);
+    this.dataTable.dataTable({
+       columnDefs: [
+        {
+            targets: 0,
+            checkboxes: {
+              selectRow: true
+           }
+        }
+     ],
+      lengthMenu: [[5, 10, 15], [5, 10, 15]],
+      pageLength: 10});
+  }, 1000);
+  // tslint:disable-next-line:align
+  this.router.routeReuseStrategy.shouldReuseRoute = () => {
+    return false;
+  };
+  // tslint:disable-next-line:align
+  this.mySubscription = this.router.events.subscribe((event) => {
+    if (event instanceof NavigationEnd) {
+      // Trick the Router into believing it's last link wasn't previously loaded
+      this.router.navigated = false;
+    }
   });
 }
 
@@ -48,7 +82,7 @@ get form() {
     this.ComplaintReg.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   getAllComplaints(a, b, c) {
@@ -65,10 +99,10 @@ get form() {
       res => this.toastr.success('Complaint Canceled', 'SUCCESS'),
       err =>  this.toastr.error('Cancelation error', 'ERROR')
     );
-    // this.router.navigate(['complaints']);
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
+
   }
   EditComplaint(id, complaint, description, comment) {
     this.EditOwnerComplaint.get('etid').setValue(id);
@@ -84,34 +118,22 @@ get form() {
       err => this.toastr.error('Error at complaint update', 'ERROR')
     );
     this.EditOwnerComplaint.reset();
-    window.location.reload();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
+
+  }
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnDestroy() {
+    if (this.mySubscription) {
+      this.mySubscription.unsubscribe();
+    }
   }
 
   ngOnInit(): void {
-    this.EditOwnerComplaint = this.fb.group({
-      etid: new FormControl(),
-      ecomplaint: new FormControl(),
-      edescription: new FormControl(),
-      ecomments: new FormControl()
-    });
+
     this.getAllComplaints(this.communityid, this.ownerid, this.unitid);
-    setTimeout(() => {
-      this.dataTable = $(this.table.nativeElement);
-      this.dataTable.dataTable({
-         columnDefs: [
-          {
-              targets: 0,
-              checkboxes: {
-                selectRow: true
-             }
-          }
-       ],
-        lengthMenu: [[5, 10, 15], [5, 10, 15]],
-        pageLength: 10});
-    }, 1000);
+    console.log('ngoninit-call');
   }
 
 }

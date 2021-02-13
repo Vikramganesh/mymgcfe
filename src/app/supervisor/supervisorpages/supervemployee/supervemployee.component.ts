@@ -53,7 +53,7 @@ export class SupervemployeeComponent implements OnInit {
     this.EmpReg.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   getEmployees(id) {
@@ -89,7 +89,7 @@ export class SupervemployeeComponent implements OnInit {
     this.Editemp.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   ngOnInit(): void {

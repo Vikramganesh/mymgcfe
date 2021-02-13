@@ -21,6 +21,10 @@ import { PdfMakeWrapper } from 'pdfmake-wrapper';
 import pdfFonts from 'pdfmake/build/vfs_fonts'; // fonts provided for pdfmake
 import { pdfMake } from 'pdfmake/build/pdfmake';
 
+import { SupervsalarypaymentsComponent } from './supervsalarypayments/supervsalarypayments.component';
+import { SupervemployesalarypaymentsComponent } from './supervemployesalarypayments/supervemployesalarypayments.component';
+import { SupervvendorsalarypaymentsComponent } from './supervvendorsalarypayments/supervvendorsalarypayments.component';
+
 // Set the fonts to use
 PdfMakeWrapper.setFonts(pdfFonts);
 
@@ -40,6 +44,13 @@ PdfMakeWrapper.setFonts(pdfFonts);
                   SupervfooterComponent,
                   SupervsidenavComponent,
                   SupervboardmembersComponent,
+                  
+                  SupervsalarypaymentsComponent,
+                  
+                  SupervemployesalarypaymentsComponent,
+                  
+                  SupervvendorsalarypaymentsComponent,
+                 
                 ],
   imports: [
     ReactiveFormsModule,

@@ -116,7 +116,7 @@ SendEditComplaint() {
   this.EditComplaintReg.reset();
   setTimeout(() => {
     window.location.reload();
-  }, 1000);
+  }, 2000);
 
 }
 SendAssignTask() {
@@ -129,7 +129,7 @@ SendAssignTask() {
     this.AssignTask.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
   SendComplaint() {
     this.ComplaintReg.get('communityid').setValue(this.communityid);
@@ -141,7 +141,7 @@ SendAssignTask() {
     this.ComplaintReg.reset();
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 2000);
   }
 
   getallunits(id) {

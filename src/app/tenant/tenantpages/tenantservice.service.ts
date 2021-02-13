@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BaseUrl } from '../../../env/env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantserviceService {
+  url = BaseUrl;
+  Url = this.url + '/tenant';
 
   constructor(private http: HttpClient) { }
 
   getUnitDetails(id) {
-    return this.http.get(`http://localhost:5000/ounitdetails/${id}`);
+    return this.http.get(this.Url + `/ounitdetails/${id}`);
   }
   getAllBoardmembers(id) {
-    return this.http.get(`http://localhost:5000/allboardmemberss/${id}`);
+    return this.http.get(this.Url + `/allboardmemberss/${id}`);
   }
 
   tentComplaint(data): Observable<any> {
@@ -23,12 +26,12 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/ownercomplaint', data, options);
+    return this.http.post(this.Url + '/tentcomplaint', data, options);
 
   }
 
-  AlltentComplaints(comid, tentid, unitid) {
-    return this.http.get(`http://localhost:5000/ownerallcomplaints/${comid}/${tentid}/${unitid}`);
+  AlltentComplaints(comid, tentid, ownerid, unitid) {
+    return this.http.get(this.Url + `/tentallcomplaints/${comid}/${tentid}/${ownerid}/${unitid}`);
   }
 
   UpdatetentComplaints(data) {
@@ -38,7 +41,7 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post(`http://localhost:5000/updatownercomplaint`, data, options);
+    return this.http.post(this.Url + `/updatownercomplaint`, data, options);
   }
   CancelComplaints(id) {
     const httpheaders = new HttpHeaders()
@@ -47,7 +50,7 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post(`http://localhost:5000/cancelownercomplaint/${id}`, options);
+    return this.http.post(this.Url + `/cancelownercomplaint/${id}`, options);
   }
   Boardmemberssearch(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -56,22 +59,22 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/boardmemberssearch', data, options);
+    return this.http.post(this.Url + '/boardmemberssearch', data, options);
 
   }
 
   getTenantData(id) {
-    return this.http.get(`http://localhost:5000/datatent/${id}`);
+    return this.http.get(this.Url + `/datatent/${id}`);
   }
 
   getCommunityName(id) {
-    return this.http.get(`http://localhost:5000/getcomdata/${id}`);
+    return this.http.get(this.Url + `/getcomdata/${id}`);
   }
   getMaintenancedata(id) {
-    return this.http.get(`http://localhost:5000/getMaintenancedata/${id}`);
+    return this.http.get(this.Url + `/getMaintenancedata/${id}`);
   }
   getPaymentsdata(id) {
-    return this.http.get(`http://localhost:5000/getPaymentsdata/${id}`);
+    return this.http.get(this.Url + `/getPaymentsdata/${id}`);
   }
   getMaintenancebydate(data): Observable<any> {
     const httpheaders = new HttpHeaders()
@@ -80,7 +83,7 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/getMaintenancebydate', data, options);
+    return this.http.post(this.Url + '/getMaintenancebydate', data, options);
 
   }
   getPaymentsdatabysearch(data): Observable<any> {
@@ -90,7 +93,6 @@ export class TenantserviceService {
     const options = {
       headers: httpheaders
     };
-    return this.http.post('http://localhost:5000/getPaymentsdatabysearch', data, options);
-
+    return this.http.post(this.Url + '/getPaymentsdatabysearch', data, options);
   }
 }

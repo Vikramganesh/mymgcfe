@@ -59,3 +59,4 @@ export class AdminresidentreportsComponent implements OnInit {
 
 
 }
+

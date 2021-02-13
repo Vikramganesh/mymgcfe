@@ -10,6 +10,9 @@ import { SupervmaintananceComponent } from './supervmaintanance/supervmaintananc
 import { SupervpaymentsComponent } from './supervpayments/supervpayments.component';
 import { SupervreceiptComponent } from './supervreceipt/supervreceipt.component';
 import { SupervboardmembersComponent } from './supervboardmembers/supervboardmembers.component';
+import { SupervsalarypaymentsComponent } from './supervsalarypayments/supervsalarypayments.component';
+import { SupervemployesalarypaymentsComponent } from './supervemployesalarypayments/supervemployesalarypayments.component';
+import { SupervvendorsalarypaymentsComponent } from './supervvendorsalarypayments/supervvendorsalarypayments.component';
 
 
 
@@ -27,6 +30,13 @@ const routes: Routes = [
     {path: 'payments', component: SupervpaymentsComponent},
     {path: 'receipts', component: SupervreceiptComponent},
     {path: 'boardmembers', component: SupervboardmembersComponent},
+    {path: 'salarypayments', component: SupervsalarypaymentsComponent,
+    children: [
+      {path: 'employepayments', component: SupervemployesalarypaymentsComponent},
+      {path: 'vendorpayments', component: SupervvendorsalarypaymentsComponent}
+     
+    ]
+  },
     {path: 'logout', loadChildren: () => import('../../login/login.module').then(m => m.LoginModule)}
   ]
 },

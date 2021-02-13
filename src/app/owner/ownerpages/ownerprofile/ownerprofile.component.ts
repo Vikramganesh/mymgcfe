@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwnerserviceService } from '../ownerservice.service';
-
+import { FormGroup, FormControl, Validators, ValidationErrors, FormBuilder } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-ownerprofile',
   templateUrl: './ownerprofile.component.html',
@@ -15,9 +16,20 @@ export class OwnerprofileComponent implements OnInit {
   phone;
   communityname;
   unittotalname;
+  personalDetails: FormGroup;
+  loginDetails: FormGroup;
 
 
-  constructor(private service: OwnerserviceService) { }
+  constructor(private fb: FormBuilder, private service: OwnerserviceService) {
+    this.personalDetails = this.fb.group({
+      name: new FormControl(this.name),
+      email: new FormControl(),
+      phone: new FormControl(),
+      cname: new FormControl()
+    });
+  }
+
+
   getOwnerdata(unitid) {
     this.service.getOwnerData(unitid).subscribe(
       data => {

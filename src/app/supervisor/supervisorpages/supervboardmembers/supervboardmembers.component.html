@@ -7,11 +7,69 @@
     </h1>
     <ol class="breadcrumb">
       <li><i class="fa fa-dashboard"></i>Home</li>
-      <li class="active">board members</li>
+      <li class="active">Board Members</li>
     </ol>
   </section>
-  <!-- Main content -->
-  <section class="content">
 
+  <section class="content">
+      <form [formGroup]="BmForm" (ngSubmit)="BmReg()" >
+          <!-- general form elements -->
+          <div class="box box-primary">
+               <div class="box-header">
+                 <h3 class="box-title" >Search</h3>
+               </div><!-- /.box-header -->
+               <div class="row">
+
+                 <div class="col-md-4">
+                   <div class="form-group">
+                     <label for="exampleInputEmail1">Start Date</label>
+                     <div class="input-group">
+                       <div class="input-group-addon">
+                         <i class="fa fa-calendar"></i>
+                       </div>
+                       <input type="month" class="form-control"  formControlName='startdate' />
+                     </div><!-- /.input group -->
+                   </div>
+
+                 </div>
+                 <div class="col-md-4">
+                   <div class="form-group">
+                     <label for="exampleInputEmail1">End Date</label>
+                     <div class="input-group">
+                       <div class="input-group-addon">
+                         <i class="fa fa-calendar"></i>
+                       </div>
+                       <input type="month" class="form-control" formControlName='enddate' />
+                     </div><!-- /.input group -->
+                   </div>
+
+                 </div>
+                 <button id="sub" type="submit" class="btn btn-primary" [disabled]="!BmForm.valid">Submit</button>
+               </div>
+          </div>
+          </form>
+
+
+          <div class="box box-primary">
+              <table #dataTable class="display" style="width:100%">
+                <thead>
+                    <tr>
+                      <th>Designation</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of  bmdata">
+                    <td>{{p.bm_designation}}</td>
+                    <td>{{p.bm_name}}</td>
+                    <td>{{p.bm_phone}}</td>
+                    <td>{{p.bm_email}}</td>
+                   </tr>
+                </tbody>
+            </table>
+            </div>
   </section>
 </div>

@@ -6,7 +6,8 @@ declare var $;
   styleUrls: ['./tenantsidenav.component.scss']
 })
 export class TenantsidenavComponent implements OnInit {
-
+  a = JSON.parse(sessionStorage.getItem('sdata'));
+  name = this.a[0].tent_name;
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +21,7 @@ export class TenantsidenavComponent implements OnInit {
              $('body').addClass('sidebar-collapse');
         }
 
- });
+      });
     });
   }
 

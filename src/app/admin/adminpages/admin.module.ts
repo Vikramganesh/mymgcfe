@@ -22,6 +22,7 @@ import { AdminresidentreportsComponent } from './adminresidentreports/adminresid
 import { AdminownerreportsComponent } from './adminownerreports/adminownerreports.component';
 import { AdmincommunitylistComponent } from './admincommunitylist/admincommunitylist.component';
 import { AdminboardmemberssearchComponent } from './adminboardmemberssearch/adminboardmemberssearch.component';
+import { AdminemployeelistComponent } from './adminemployeelist/adminemployeelist.component';
 
 
 
@@ -43,7 +44,8 @@ import { AdminboardmemberssearchComponent } from './adminboardmemberssearch/admi
     AdminresidentreportsComponent,
     AdminownerreportsComponent,
     AdmincommunitylistComponent,
-    AdminboardmemberssearchComponent
+    AdminboardmemberssearchComponent,
+    AdminemployeelistComponent
   ],
   imports: [
     CommonModule,

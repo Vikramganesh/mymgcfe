@@ -38,12 +38,11 @@ export class AdminboardmemberssearchComponent implements OnInit {
       }
     );
   }
-  BmReg()
-  {
+  BmReg(){
     console.log(this.BmForm.value);
     this.adminservice.Boardmemberssearch(this.BmForm.value).subscribe(
-     data=>{
-       this.bmdata=data;
+     data => {
+       this.bmdata = data;
        console.log(data);
 
      }

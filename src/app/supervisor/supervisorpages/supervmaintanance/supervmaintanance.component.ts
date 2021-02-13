@@ -29,7 +29,7 @@ export class SupervmaintananceComponent implements OnInit {
     this.GenMaintenance = this.frmBuilder.group({
       communityid: new FormControl(),
       block_id: new FormControl(),
-      house_block_id: new FormControl(),
+      // house_block_id: new FormControl(),
       date: new FormControl(),
       amountm: this.frmBuilder.array([])
     });
@@ -44,11 +44,12 @@ export class SupervmaintananceComponent implements OnInit {
     for (let i = 0; i < length; i++) {
         this.t.push(this.frmBuilder.group({
             id: [this.maintenance[i].invoice_id],
+            house_num: [this.maintenance[i].house_num],
             flat_num: [this.maintenance[i].flat_num],
             maintenance_amt: [this.maintenance[i].maintenance_amt],
             due: [this.maintenance[i].due_amt],
-            others: ['', [Validators.required, Validators.email]],
-            discounts: ['', [Validators.required, Validators.email]]
+            others: [this.maintenance[i].otherdues, [Validators.required, Validators.email]],
+            discounts: [this.maintenance[i].discounts, [Validators.required, Validators.email]]
         }));
     }
   }

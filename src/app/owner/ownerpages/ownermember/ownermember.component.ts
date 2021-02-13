@@ -53,6 +53,9 @@ export class OwnermemberComponent implements OnInit {
       err => alert('Error at registration..')
     );
     this.MemberReg.reset();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   }
 
   getomemberDetails(c, u, o) {

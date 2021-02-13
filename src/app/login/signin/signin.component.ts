@@ -29,11 +29,11 @@ export class SigninComponent implements OnInit {
    }
 
    LoginSubmit() {
-     console.log(this.login.value);
+     // console.log(this.login.value);
      this.loginservice.login(this.login.value).subscribe(
       data => {
         this.loginresult = data;
-        console.log('SESSION', data);
+       // console.log('SESSION', data);
       },
       (error: any) => {
         if ( error.status === 400) {

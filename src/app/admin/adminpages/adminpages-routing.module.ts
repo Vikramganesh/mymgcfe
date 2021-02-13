@@ -14,6 +14,8 @@ import { AdmintenantreportsComponent } from './admintenantreports/admintenantrep
 import { AdminresidentreportsComponent } from './adminresidentreports/adminresidentreports.component';
 import { AdmincommunitylistComponent } from './admincommunitylist/admincommunitylist.component';
 import { AdminboardmemberssearchComponent } from './adminboardmemberssearch/adminboardmemberssearch.component';
+import { AdminemployeelistComponent } from './adminemployeelist/adminemployeelist.component';
+import { ResourceLoader } from '@angular/compiler';
 
 
 
@@ -26,6 +28,7 @@ const routes: Routes = [
       {path: 'boardmemberslist', component: AdminboardmemberssearchComponent},
       {path: 'boardmembers', component: AdminboardmembersComponent},
       {path: 'resident', component: AdminresidentComponent},
+      {path: 'employeelist', component: AdminemployeelistComponent},
       {path: 'employee', component: AdminemployeeComponent},
       {path: 'approvals', component: AdminapprovalsComponent},
       {path: 'broadcast', component: AdminbroadcastComponent},

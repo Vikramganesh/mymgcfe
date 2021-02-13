@@ -18,6 +18,7 @@ export class TenantcomplaintsComponent implements OnInit {
   unitid = this.a[0].unit_id;
   communityid = this.a[0].sis_community_id;
   ownerid = this.a[0].owner_id;
+  tent_id = this.a[0].tent_id;
   ComplaintReg: FormGroup;
   EdittentComplaint: FormGroup;
   allcomplaints;
@@ -27,6 +28,7 @@ export class TenantcomplaintsComponent implements OnInit {
       communityid: new FormControl(),
       unitid: new FormControl(),
       ownerid: new FormControl(),
+      tent_id: new FormControl(),
       complaint: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       comments: new FormControl('', [Validators.required]),
@@ -41,6 +43,7 @@ get form() {
     this.ComplaintReg.get('communityid').setValue(this.communityid);
     this.ComplaintReg.get('unitid').setValue(this.unitid);
     this.ComplaintReg.get('ownerid').setValue(this.ownerid);
+    this.ComplaintReg.get('tent_id').setValue(this.tent_id);
     console.log(this.ComplaintReg.value);
     this.service.tentComplaint(this.ComplaintReg.value).subscribe(
       res => this.toastr.success('Complaint Registered', 'SUCCESS'),
@@ -52,8 +55,8 @@ get form() {
     }, 1000);
   }
 
-  getAllComplaints(a, b, c) {
-    this.service.AlltentComplaints(a, b, c).subscribe(
+  getAllComplaints(a, b, c, d) {
+    this.service.AlltentComplaints(a, b, c, d).subscribe(
       data => {
         this.allcomplaints = data;
         console.log(data);
@@ -98,7 +101,7 @@ get form() {
       edescription: new FormControl(),
       ecomments: new FormControl()
     });
-    this.getAllComplaints(this.communityid, this.ownerid, this.unitid);
+    this.getAllComplaints(this.communityid, this.tent_id, this.ownerid, this.unitid);
     setTimeout(() => {
       this.dataTable = $(this.table.nativeElement);
       this.dataTable.dataTable({

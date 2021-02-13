@@ -22,19 +22,23 @@
       <thead>
           <tr>
            <th>Name</th>
-           <th>Address</th>
-           <th>Contact Person-1</th>
-           <th>Contact Person-2</th>
+           <th>City</th>
+           <th>Primary Contact</th>
+           <th>Secondary Contact</th>
+           <th>Status</th>
            <th>Action</th>
+           <th>Trigger</th>
           </tr>
       </thead>
       <tbody>
         <tr *ngFor="let c of communities">
-          <td>{{c.sis_community_name}}</td>
+          <td><a data-toggle="modal" data-target="#community" style="color:black;cursor: pointer;" (click)="AllComData(c.sis_community_id)" >{{c.sis_community_name}}</a></td>
           <td>{{c.sis_community_city}}</td>
           <td>{{c.sis_community_spoc1_name}}</td>
           <td>{{c.sis_community_spoc2_name}}</td>
-          <td><button type="button" id="edit" (click)="Data(c.sis_community_id,c.sis_community_spoc1_name,c.sis_community_spoc1_email,c.sis_community_spoc1_ph,c.sis_community_spoc2_name,c.sis_community_spoc2_email,c.sis_community_spoc2_ph)" class="btn btn-sm btn-primary fa fa-pencil noUnderlineCustom text-white" data-toggle="modal" data-target="#editcommunity"></button></td>
+          <td>Active</td>
+          <td><button type="button" id="edit" (click)="Data(c.sis_community_id,c.sis_community_spoc1_name,c.sis_community_spoc1_email,c.sis_community_spoc1_ph,c.sis_community_spoc2_name,c.sis_community_spoc2_email,c.sis_community_spoc2_ph,c.sis_community_maintenance_type,c.sis_community_maintenance)" class="btn btn-sm btn-primary fa fa-pencil noUnderlineCustom text-white" data-toggle="modal" data-target="#editcommunity"></button></td>
+          <td><button type="button" class="btn btn-sm btn-primary fa fa-upload noUnderlineCustom text-white" (click)="SendEmail(c.sis_community_id)"></button></td>
         </tr>
       </tbody>
   </table>
@@ -183,6 +187,115 @@
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="community" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLongTitle">Community Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="CommunityData">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Community Name</label>
+                <input type="text" formControlName="cn" class="form-control"  placeholder="Name" readonly/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="name">Locality</label>
+                <input type="text" formControlName="cl" class="form-control"  placeholder="Name" readonly/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="name">City</label>
+                <input type="text" formControlName="cc" class="form-control"  placeholder="Phone" readonly/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="name">state</label>
+                <input type="text" formControlName="cst" class="form-control"  placeholder="Email" readonly/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="name">PIN</label>
+                <input type="text" formControlName="cpin" class="form-control"  placeholder="Email" readonly/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-1 Name</label>
+                <input type="text" formControlName="cpcno" class="form-control"  placeholder="Name" readonly/>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-1 Phone</label>
+                <input type="text" formControlName="cpcpo" class="form-control"  placeholder="Phone" readonly/>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-1 Email</label>
+                <input type="text" formControlName="cpceo" class="form-control"  placeholder="Email" readonly/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-2 Name</label>
+                <input type="text" formControlName="cpcnt" class="form-control"  placeholder="Name" readonly/>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-2 Phone</label>
+                <input type="text" formControlName="cpcpt" class="form-control"  placeholder="Phone" readonly/>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="name">Contact Person-2 Email</label>
+                <input type="text" formControlName="cpcet" class="form-control"  placeholder="Email" readonly/>
+              </div>
+            </div>
+            <div>
+              <div class="form-group" >
+                <label for="name">Maintenance Indicator</label>
+                <input type="text" formControlName="mindicator" class="form-control"  placeholder="Maintenance Indicator" readonly/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="name">Amount</label>
+              <input type="text" formControlName="Amt" class="form-control"  placeholder="Amount" readonly/>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      </form>
       </div>
     </div>
   </div>

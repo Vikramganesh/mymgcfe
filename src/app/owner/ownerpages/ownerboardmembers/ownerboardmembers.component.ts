@@ -13,7 +13,7 @@ export class OwnerboardmembersComponent implements OnInit {
   dataTable: any;
   a = JSON.parse(sessionStorage.getItem('sdata'));
   name = this.a[0].owner_name;
-  communityid= this.a[0].sis_community_id;
+  communityid = this.a[0].sis_community_id;
   BmForm: FormGroup;
   bmdata;
   constructor(private fb: FormBuilder,  private service: OwnerserviceService) {
@@ -27,8 +27,8 @@ export class OwnerboardmembersComponent implements OnInit {
    {
      console.log(this.BmForm.value);
      this.service.Boardmemberssearch(this.BmForm.value).subscribe(
-      data=>{
-        this.bmdata=data;
+      data => {
+        this.bmdata = data;
         console.log(data);
 
       }
